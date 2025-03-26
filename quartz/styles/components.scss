@@ -1,0 +1,165 @@
+// Proposition Card
+.proposition-card {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  header {
+    margin-bottom: 1rem;
+    
+    h1 {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .meta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      color: var(--secondary);
+      font-size: 0.9rem;
+
+      .type {
+        background: var(--light);
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .content {
+    margin: 1rem 0;
+  }
+
+  footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--light);
+  }
+}
+
+// Quest Card
+.quest-card {
+  background: var(--bg);
+  border-radius: 8px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  &.active {
+    border-left: 4px solid var(--accent);
+  }
+
+  &.pending {
+    border-left: 4px solid var(--secondary);
+  }
+
+  &.completed {
+    border-left: 4px solid var(--success);
+  }
+
+  &.archived {
+    border-left: 4px solid var(--light);
+  }
+
+  header {
+    margin-bottom: 1rem;
+    
+    h1 {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .meta {
+      display: flex;
+      gap: 1rem;
+      margin-top: 0.5rem;
+      color: var(--secondary);
+      font-size: 0.9rem;
+
+      .status {
+        background: var(--light);
+        padding: 0.2rem 0.5rem;
+        border-radius: 4px;
+      }
+    }
+  }
+
+  .propositions {
+    margin: 1rem 0;
+    padding: 1rem;
+    background: var(--light);
+    border-radius: 4px;
+
+    h2 {
+      margin: 0 0 0.5rem 0;
+      font-size: 1.1rem;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 1.5rem;
+    }
+  }
+
+  .content {
+    margin: 1rem 0;
+  }
+
+  footer {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--light);
+
+    .progress {
+      height: 4px;
+      background: var(--light);
+      border-radius: 2px;
+      overflow: hidden;
+
+      .progress-bar {
+        height: 100%;
+        background: var(--accent);
+        transition: width 0.3s ease;
+      }
+    }
+  }
+}
+
+// Graph View
+.graph-view {
+  width: 100%;
+  height: 600px;
+  background: var(--bg);
+  border-radius: 8px;
+  margin: 2rem 0;
+  overflow: hidden;
+}
+
+// Navigation
+.nav-container {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+
+  .nav-item {
+    padding: 0.5rem 1rem;
+    background: var(--light);
+    border-radius: 4px;
+    color: var(--text);
+    text-decoration: none;
+    transition: background 0.2s ease;
+
+    &:hover {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    &.active {
+      background: var(--accent);
+      color: var(--bg);
+    }
+  }
+} 

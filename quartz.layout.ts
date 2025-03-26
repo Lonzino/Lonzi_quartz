@@ -1,7 +1,7 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
-import { defineLayout } from "./quartz/types"
 import { KanbanBoard } from "./quartz/components/KanbanBoard"
+import { defineLayout } from "./quartz/types"
 import { parseKanbanMarkdown } from "./quartz/utils/kanbanParser"
 
 // components shared across all pages

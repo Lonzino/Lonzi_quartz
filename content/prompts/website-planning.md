@@ -1,248 +1,196 @@
 ---
-title: "Website Planning & Development Guide"
-description: "A comprehensive guide for developing and maintaining the digital garden website"
+title: "사고 기반 자기 구조화 웹사이트 기획안"
+description: "사용자의 자기 인식과 커리어 설계를 위한 사고 체계 기반 구조화 시스템"
 ---
 
-# Website Planning & Development Guide 🚀
+# 사고 기반 자기 구조화 웹사이트 기획안 🧠
 
-## 1. Project Overview
+## 1. 프로젝트 개요
 
-### 1.1 Purpose
-- Personal digital garden for sharing thoughts, projects, and knowledge
-- Professional portfolio showcase
-- Interactive learning and documentation platform
+### 1.1 목적
+- 사고 체계 기반의 자기 인식 및 커리어 설계 시스템 구축
+- 사고 → 명제화 → 차이 분석 → Quest 생성 → 커리어 설계의 흐름 구현
+- 실천 가능한 목표의 시각화 및 관리 기능 제공
 
-### 1.2 Target Audience
-- Fellow developers and tech enthusiasts
-- Potential employers/clients
-- General audience interested in technology and personal development
+### 1.2 핵심 기능
+- 자기 인식 기록 및 분류
+- 사고 기반 문제 인식 및 해결
+- 실천 과제(Quest) 생성 및 추적
+- 커리어 방향 정립
+- AI 프롬프트 기반 자기 설명 데이터셋 제공
 
-## 2. Technical Stack
+## 2. 기술 스택
 
-### 2.1 Core Technologies
-- Quartz (Static Site Generator)
-- Markdown for content
-- TypeScript for custom components
-- CSS for styling
+### 2.1 핵심 기술
+- Quartz (정적 사이트 생성기)
+- Markdown 기반 콘텐츠 관리
+- TypeScript (커스텀 컴포넌트)
+- Mermaid.js (시각화)
+- Obsidian 호환성
 
-### 2.2 Development Environment
+### 2.2 개발 환경
 - Node.js >= 20
 - npm >= 9.3.1
-- Git for version control
-- VS Code/Cursor for development
+- Git 버전 관리
+- VS Code/Cursor 개발 환경
 
-## 3. Site Structure
+## 3. 사이트 구조
 
-### 3.1 Main Sections
+### 3.1 콘텐츠 구조
 ```
 content/
-├── index.md (Homepage)
-├── about/
-├── blog/
-├── projects/
-├── guides/
-└── contact/
+├── propositional/          # 명제적 사고
+│   ├── cognitive/         # 인지적 신념
+│   │   ├── verifiable/    # 검증 가능
+│   │   ├── debatable/     # 논쟁 가능
+│   │   └── unverifiable/  # 검증 불가능
+│   └── value/            # 가치 판단
+│       ├── moral/        # 도덕적 가치
+│       ├── pragmatic/    # 실용적 가치
+│       └── personal/     # 개인적 가치
+├── nonpropositional/     # 비명제적 사고
+│   ├── preference/      # 취향/선호
+│   ├── emotion/        # 감정/정서
+│   ├── mood/          # 기분/분위기
+│   └── aesthetic/     # 미적/감각
+├── identity/          # 정체성 관련
+├── metaphysical/     # 형이상학적
+├── unclassified/    # 미분류 명제
+└── quests/         # 실천 과제
+    ├── templates/  # 퀘스트 템플릿
+    ├── pending/   # 대기 중
+    ├── active/    # 진행 중
+    ├── completed/ # 완료됨
+    └── archived/  # 보관됨
 ```
 
-### 3.2 Content Organization
-- **Blog Posts**: `/content/posts/`
-- **Projects**: `/content/projects/`
-- **Guides**: `/content/guides/`
-- **Static Assets**: `/static/`
+## 4. Quest 시스템
 
-## 4. Development Guidelines
+### 4.1 Quest 생성 조건
+- 동일 주어("나") 사용
+- 시간 차이 있는 명제 쌍
+  - 현재: 인지적 신념
+  - 미래: 가치 판단
+- 실체적 차이 요소의 유무 여부 구분 가능
 
-### 4.1 Code Style
+### 4.2 Quest 구조
+```markdown
+---
+title: "Quest 제목"
+status: "active"
+created: "YYYY-MM-DD"
+propositions:
+  - current: "현재 인지적 신념 UUID"
+  - future: "미래 가치 판단 UUID"
+difference: "차이 요소"
+career_impact: "커리어 영향"
+---
+
+## 실행 계획
+- [ ] 단계 1
+- [ ] 단계 2
+- [ ] 단계 3
+```
+
+## 5. 시각화 및 기능
+
+### 5.1 그래프 뷰
+- 명제 간 관계 시각화
+- Quest 상태 트래커
+- 타임라인 뷰
+- AI 프롬프트 추출
+
+### 5.2 컴포넌트 구조
 ```typescript
-// Component Structure
+// 명제 카드 컴포넌트
+interface PropositionCardProps {
+  id: string;
+  type: 'cognitive' | 'value' | 'nonpropositional';
+  content: string;
+  tags: string[];
+  createdAt: string;
+}
+
+// Quest 카드 컴포넌트
+interface QuestCardProps {
+  id: string;
+  title: string;
+  status: 'pending' | 'active' | 'completed' | 'archived';
+  propositions: string[];
+  difference: string;
+  careerImpact: string;
+}
+```
+
+## 6. AI 프롬프트 시스템
+
+### 6.1 데이터 구조화
+```markdown
+---
+type: "proposition"
+category: "cognitive"
+verifiability: "verifiable"
+tags: ["자산", "경력"]
+ai_prompt: {
+  "context": "사용자 성향",
+  "current_state": "현재 인지 상태",
+  "future_goal": "이상 가치 목표"
+}
+---
+```
+
+### 6.2 프롬프트 활용
+- 자기 구조화된 사고/행동 데이터 기반
+- 정확한 AI 프롬프트 제공
+- 행동 계획 제안
+
+## 7. 개발 가이드라인
+
+### 7.1 코드 스타일
+```typescript
+// 컴포넌트 구조
 interface ComponentProps {
-  // Props interface
+  // Props 인터페이스
 }
 
 export const Component: React.FC<ComponentProps> = ({ prop1, prop2 }) => {
-  // Component implementation
+  // 컴포넌트 구현
 };
 ```
 
-### 4.2 Markdown Format
-```markdown
----
-title: "Post Title"
-description: "Post description"
-date: "YYYY-MM-DD"
-tags: ["tag1", "tag2"]
----
+### 7.2 명명 규칙
+- 파일: kebab-case (예: `my-component.tsx`)
+- 컴포넌트: PascalCase (예: `MyComponent`)
+- 변수: camelCase (예: `myVariable`)
+- 상수: UPPER_SNAKE_CASE (예: `MY_CONSTANT`)
 
-# Content here
-```
+## 8. 향후 확장 계획
 
-### 4.3 Naming Conventions
-- Files: kebab-case (e.g., `my-component.tsx`)
-- Components: PascalCase (e.g., `MyComponent`)
-- Variables: camelCase (e.g., `myVariable`)
-- Constants: UPPER_SNAKE_CASE (e.g., `MY_CONSTANT`)
+### 8.1 기능 확장
+- Mermaid 기반 트리 뷰 자동 생성
+- Obsidian 연동 구조
+- 명제-퀘스트-커리어 관계 시각화
+- 자동 Quest 추천 시스템
+- 사용자 유형 분류 기반 대시보드
 
-## 5. Feature Implementation Guide
+### 8.2 기술적 개선
+- 성능 최적화
+- 테스트 커버리지 향상
+- 빌드 프로세스 개선
+- 의존성 업데이트
 
-### 5.1 Navigation
-```typescript
-// Navigation structure
-const navigation = {
-  main: [
-    { name: 'Home', href: '/' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Projects', href: '/projects' },
-    { name: 'About', href: '/about' },
-    { name: 'Contact', href: '/contact' }
-  ]
-};
-```
+## 9. 유지보수 계획
 
-### 5.2 Content Components
-```typescript
-// Card component for projects
-interface ProjectCardProps {
-  title: string;
-  description: string;
-  image: string;
-  link: string;
-  tags: string[];
-}
+### 9.1 정기 업데이트
+- 월간 의존성 업데이트
+- 분기별 콘텐츠 검토
+- 월간 링크 점검
+- 성능 메트릭 모니터링
 
-// Blog post preview
-interface BlogPreviewProps {
-  title: string;
-  excerpt: string;
-  date: string;
-  readingTime: string;
-  tags: string[];
-}
-```
+### 9.2 백업 전략
+- 정기 콘텐츠 백업
+- 버전 관리
+- 설정 변경 문서화
+- 배포 로그 관리
 
-## 6. Development Workflow
 
-### 6.1 Local Development
-```bash
-# Start development server
-npm run docs
-
-# Build for production
-npm run build
-
-# Format code
-npm run format
-
-# Type checking
-npm run check
-```
-
-### 6.2 Deployment Process
-1. Make changes in feature branch
-2. Run tests and checks
-3. Create pull request
-4. Merge to main branch
-5. Netlify auto-deploy
-
-## 7. Content Guidelines
-
-### 7.1 Blog Posts
-- Minimum 500 words
-- Include relevant images
-- Add tags for categorization
-- Include meta description
-- Add reading time estimate
-
-### 7.2 Projects
-- Project overview
-- Technologies used
-- Screenshots/demos
-- Live demo link
-- GitHub repository link
-
-### 7.3 Guides
-- Step-by-step instructions
-- Code examples
-- Visual aids
-- Prerequisites
-- Troubleshooting section
-
-## 8. Performance Optimization
-
-### 8.1 Image Optimization
-- Use WebP format
-- Implement lazy loading
-- Optimize image sizes
-- Use responsive images
-
-### 8.2 Code Optimization
-- Implement code splitting
-- Minimize bundle size
-- Use caching strategies
-- Optimize fonts loading
-
-## 9. SEO Guidelines
-
-### 9.1 Meta Tags
-```html
-<meta name="description" content="Page description">
-<meta name="keywords" content="relevant, keywords">
-<meta property="og:title" content="Page title">
-<meta property="og:description" content="Page description">
-<meta property="og:image" content="image-url">
-```
-
-### 9.2 Content Structure
-- Use proper heading hierarchy (h1, h2, h3)
-- Include alt text for images
-- Create descriptive URLs
-- Implement structured data
-
-## 10. Maintenance Tasks
-
-### 10.1 Regular Updates
-- Update dependencies monthly
-- Review and update content quarterly
-- Check broken links monthly
-- Monitor performance metrics
-
-### 10.2 Backup Strategy
-- Regular content backups
-- Version control for all changes
-- Document configuration changes
-- Keep deployment logs
-
-## 11. Troubleshooting Guide
-
-### 11.1 Common Issues
-```typescript
-// Build errors
-- Check Node.js version
-- Verify npm dependencies
-- Clear cache and node_modules
-
-// Content issues
-- Validate markdown syntax
-- Check frontmatter format
-- Verify image paths
-```
-
-### 11.2 Performance Issues
-- Check bundle size
-- Monitor loading times
-- Verify image optimization
-- Check caching implementation
-
-## 12. Future Enhancements
-
-### 12.1 Planned Features
-- Dark mode support
-- Search functionality
-- Newsletter integration
-- Comment system
-- Analytics dashboard
-
-### 12.2 Technical Debt
-- Refactor components
-- Update dependencies
-- Improve test coverage
-- Optimize build process 

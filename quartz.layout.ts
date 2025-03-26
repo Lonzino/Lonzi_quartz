@@ -1,5 +1,8 @@
 import { PageLayout, SharedLayout } from "./quartz/cfg"
 import * as Component from "./quartz/components"
+import { defineLayout } from "./quartz/types"
+import { KanbanBoard } from "./quartz/components/KanbanBoard"
+import { parseKanbanMarkdown } from "./quartz/utils/kanbanParser"
 
 // components shared across all pages
 export const sharedPageComponents: SharedLayout = {
@@ -65,3 +68,29 @@ export const defaultListPageLayout: PageLayout = {
   ],
   right: [],
 }
+
+export default defineLayout({
+  components: {
+    KanbanBoard: {
+      props: {
+        data: parseKanbanMarkdown(`
+---
+kanban-plugin: basic
+---
+
+## To Do
+- [ ] Task 1 #project
+- [ ] Task 2 #urgent due:2024-03-30
+
+## In Progress
+- [ ] Task 3 #ongoing
+- [ ] Task 4 #blocked
+
+## Done
+- [x] Task 5 #completed
+- [x] Task 6 #archived
+`)
+      }
+    }
+  }
+})
